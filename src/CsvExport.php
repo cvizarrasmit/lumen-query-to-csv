@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelquerytocsv;
+namespace Lumenquerytocsv;
 use DB;
 use Log;
 use File;
@@ -108,9 +108,9 @@ class CsvExport
             dd($e->getMessage());
             $error = strtolower($e->getMessage());
             if (str_contains($error,'cardinality')) {
-                abort(500, "LaravelLargeExportException : The count of column you have specified for export does not match with selected columns in MySQL query!");
+                abort(500, "LumenLargeExportException : The count of column you have specified for export does not match with selected columns in MySQL query!");
             }
-            abort(500, "LaravelLargeExportException : You have an error in your SELECT query syntax. Query : \" $this->rawSql \"");
+            abort(500, "LumenLargeExportException : You have an error in your SELECT query syntax. Query : \" $this->rawSql \"");
         }
 
         return $this;
@@ -132,7 +132,7 @@ class CsvExport
         
         //check for query statements, reject all except SELECT statement
         if(!in_array($queryStatementFromQueryString, $queryStatementsAllowed)){
-            abort(500, "LaravelLargeExportException : $queryStatementFromQueryString query is not allowed as you are exporting the data, please use select statements!");
+            abort(500, "LumenLargeExportException : $queryStatementFromQueryString query is not allowed as you are exporting the data, please use select statements!");
         }
 
         //check for multiple query statements separated by semicolon
@@ -140,7 +140,7 @@ class CsvExport
         $queryBindingsRemoved = preg_replace("/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is", '', $queryString);
 
         if(strpos(';', $queryBindingsRemoved) !== false){
-            abort(500, "LaravelLargeExportException : Query string seems to have multiple queries!");
+            abort(500, "LumenLargeExportException : Query string seems to have multiple queries!");
         }
 
         return $originalQueryString; 

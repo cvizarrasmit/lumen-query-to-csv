@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravelquerytocsv;
+namespace Lumenquerytocsv;
 
-use Laravelquerytocsv\CsvExport;
+use Lumenquerytocsv\CsvExport;
 
 class QueryToCsv
 {
@@ -20,7 +20,7 @@ class QueryToCsv
             return new CsvExport($builder);
         }
         $builderClass = get_class($builder);
-        abort(500, "LaravelLargeExportException : The paramater passed to setQueryBuilder(\$builder) function has to be an instance of either Illuminate\Database\Query\Builder OR Illuminate\Database\Eloquent\Builder, instance of $builderClass is given!");
+        abort(500, "LumenLargeExportException : The paramater passed to setQueryBuilder(\$builder) function has to be an instance of either Illuminate\Database\Query\Builder OR Illuminate\Database\Eloquent\Builder, instance of $builderClass is given!");
         
     }
     

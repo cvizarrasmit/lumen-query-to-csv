@@ -1,6 +1,6 @@
-# Laravel Export To CSV natively in MySQL
+# Lumen Export To CSV natively in MySQL
 
-Supports Laravel 5.2 and above
+Supports Lumen 5.2 and above
 
 Many applications require an export to csv functionality. It's implemented in variety of ways, however many of us face a performance bottleneck when the data to be exported is very huge. PHP application may consum lot of memory resources for each export. 
 
@@ -19,9 +19,10 @@ composer require techsemicolon/laravel-query-to-csv
 
 **Register the service Provider**
 
-Add service provider to `config/app.php` in `providers` section
+Add service provider to `bootsrap/app.php`
 ```php
-Laravelquerytocsv\QueryToCsvServiceProvider::class,
+$app->register(Lumenquerytocsv\QueryToCsvServiceProvider::class);
+
 ```
 
 **Set up package configuration**

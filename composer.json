@@ -1,5 +1,5 @@
 {
-    "name": "cvizarrasmit/laravel-query-to-csv",
+    "name": "cvizarrasmit/lumen-query-to-csv",
     "description": "Forked from techsemicolon/laravel-query-to-csv. Updated to work on lumen. Export the data from a query builder or raw select query into csv directly, eliminating overhead on php and in much less execution time",
     "type": "library",
     "version" : "0.0.1",
@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravelquerytocsv\\": "src/"
+            "Lumenquerytocsv\\": "src/"
         }
     }
 }

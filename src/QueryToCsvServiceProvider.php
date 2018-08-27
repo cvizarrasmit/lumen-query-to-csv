@@ -1,6 +1,6 @@
 <?php 
 
-namespace Laravelquerytocsv;
+namespace Lumenquerytocsv;
 
 use Illuminate\Support\ServiceProvider;
 
