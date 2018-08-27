@@ -30,7 +30,7 @@ class CsvExport
         }
         else{
             $this->type = 'builder';
-            if(Config::get('querytocsv.enable-logging') && Config::get('querytocsv.addlog-row-count')){
+            if(app('config')->get('querytocsv.enable-logging') && app('config')->get('querytocsv.addlog-row-count')){
                 $this->rowcount = $builder->count();
             }
             $this->rawSql = $this->getSqlWithBinding($builder);
@@ -83,19 +83,19 @@ class CsvExport
         try{
             
             $expotQuery = $this->modifyRawSqlWithOutfileDetails();
-            if(Config::get('querytocsv.enable-logging')){
+            if(app('config')->get('querytocsv.enable-logging')){
                 $time_pre = microtime(true);
             }
 
             DB::statement($expotQuery);
 
-            if(Config::get('querytocsv.enable-logging')){
+            if(app('config')->get('querytocsv.enable-logging')){
                 $time_post = microtime(true);
                 $exec_time = ($time_post - $time_pre) * 1000;
                 $exec_time = round($exec_time, 2);
                 Log::useDailyFiles(storage_path().'/logs/querytocsv.log');
                 $logPath = str_replace(str_replace('\\','/', base_path()), '', $this->exportFilePath);
-                if(Config::get('querytocsv.addlog-row-count')){
+                if(app('config')->get('querytocsv.addlog-row-count')){
                     Log::info("Export Execution Time :  $exec_time milliseconds | File : $logPath | Row Count : $this->rowcount");
                 }
                 else{
@@ -211,11 +211,11 @@ class CsvExport
      */
     private function getExportFilePath($fileName, $folderName){
        
-        $defaultFolder = Config::get('querytocsv.default-folder') ? Config::get('querytocsv.default-folder') : 'csvexport';
+        $defaultFolder = app('config')->get('querytocsv.default-folder') ? app('config')->get('querytocsv.default-folder') : 'csvexport';
         $folderName = $folderName ? $folderName:$defaultFolder;
         $fileName = $fileName ? $fileName:'sheetfile';
 
-        if(Config::get('querytocsv.add-timestamp')){
+        if(app('config')->get('querytocsv.add-timestamp')){
             $fileName .= time().'.csv';
         }
         else{
