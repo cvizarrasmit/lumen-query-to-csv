@@ -4,7 +4,6 @@ namespace Laravelquerytocsv;
 use DB;
 use Log;
 use File;
-use Config;
 
 class CsvExport
 {
